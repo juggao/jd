@@ -113,7 +113,7 @@ int main(void)
     printf("Julian day (Vogelaar): %f\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
     printf("Julian day number since March 1 200 (Fluks): %d\n", juld);     
     printf("First day month: %d\n", juld1+1); /* +1 is the the first day of the month */
-    printf("Janssen day number (JD): % d\n", janssen_day(juld));
+    printf("Janssen day number since February 23 2021 (JD): % d\n", janssen_day(juld));
     
     return 0;
 }
