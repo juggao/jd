@@ -98,7 +98,7 @@ int main(void)
     
     lt = time(NULL); 
     ptr = gmtime(&lt); 
-    printf("%s", asctime(ptr)); 
+    printf("UTC: %s", asctime(ptr)); 
  
     printf("Day #: %d\n", ptr->tm_mday);
     printf("Month #: %d\n", ptr->tm_mon+1);
