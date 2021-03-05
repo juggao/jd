@@ -4,7 +4,16 @@
     
     March 5 2021
     JD: 11
-    
+   
+   
+   KNOWN BUG:
+   
+   faketime '1900-01-01 08:25:30' ./iso
+isodayyear: 1
+isoweeknr: 53
+isoweekday: 1
+isoyear: 1899
+ 
  */
 
 #include<stdio.h>
