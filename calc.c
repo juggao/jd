@@ -54,9 +54,9 @@ double julianday_c( double day, double month, double year )
 }
 
 
-long long jd_fluks(double day, double mon, double year)
+unsigned long long jd_fluks(double day, double mon, double year)
 {
-    long long calday;
+    unsigned long long calday;
     double caldaycor;
     double cor100, cor400;
     
@@ -82,12 +82,12 @@ long long jd_fluks(double day, double mon, double year)
     return calday; /* first day = day of month */
 }
 
-long long jd_day(long long calday, long long day)
+unsigned long long jd_day(unsigned long long calday, unsigned long long day)
 {
     return calday+day;
 }
        
-long long janssen_day(long long julianday)
+unsigned long long janssen_day(unsigned long long julianday)
 {
     return (julianday - 665101);
 }
@@ -97,7 +97,7 @@ int main(void)
 
     struct tm* ptr; 
     time_t lt; 
-    long long juld1,juld,jansd;
+    unsigned long long juld1,juld,jansd;
     
     lt = time(NULL); 
     ptr = gmtime(&lt); 
