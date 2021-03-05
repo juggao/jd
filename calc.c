@@ -15,9 +15,6 @@
 #include<time.h>
 
 
-#include   "math.h"
-
-
 double julianday_c( double day, double month, double year )
 /*----------------------------------------------------------------------*/
 /* Purpose: Convert a date in the Julian or Gregorian calendars into the*/
