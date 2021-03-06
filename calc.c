@@ -81,7 +81,7 @@ unsigned long long jd_fluks(double day, double mon, double year)
 
 unsigned long long jd_day(unsigned long long calday, unsigned long long day)
 {
-    return calday+day;
+    return (calday + day);
 }
        
 unsigned long long janssen_day(unsigned long long julianday)
@@ -98,19 +98,19 @@ int main(void)
     
     lt = time(NULL); 
     ptr = gmtime(&lt); 
-    printf("UTC: %s", asctime(ptr)); 
+    printf("UTC     : %s", asctime(ptr)); 
  
-    printf("Day #: %d\n", ptr->tm_mday);
-    printf("Month #: %d\n", ptr->tm_mon+1);
-    printf("Year #: %d\n", ptr->tm_year+1900);
+    printf("Day     : %d\n", ptr->tm_mday);
+    printf("Month   : %d\n", ptr->tm_mon+1);
+    printf("Year    : %d\n", ptr->tm_year+1900);
   
     juld1 = jd_fluks(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900);
     juld = jd_day(juld1,ptr->tm_mday);
     
-    printf("Julian day (Vogelaar): %f\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
-    printf("Julian day number since March 1 200 (Fluks): %lld\n", juld);     
+    printf("Julian day (JDN) (Vogelaar): %f\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
+    printf("Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld);     
     printf("First day month: %lld\n", juld1+1); /* +1 is the the first day of the month */
-    printf("Janssen day number since February 23 2021 (JD): %lld\n", janssen_day(juld));
+    printf("Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
     
     return 0;
 }
