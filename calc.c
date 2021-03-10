@@ -88,6 +88,11 @@ unsigned long long janssen_day(unsigned long long julianday)
 {
     return (julianday - 665101);
 }
+
+long long dd_day(unsigned long long day)
+{
+    return (666666-day);
+}
        
 int main(void)
 {
@@ -111,7 +116,8 @@ int main(void)
     printf("Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld);     
     printf("First day month: %lld\n", juld1+1); /* +1 is the the first day of the month */
     printf("Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
-    
+    printf("Days till DD-day (6-6-2025): %lld\n", dd_day(juld));
+        
     return 0;
 }
 
