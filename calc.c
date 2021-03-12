@@ -50,7 +50,7 @@ double julianday_c( double day, double month, double year )
    return( JD );
 }
 
-// Compute parameters for a Gregorian month.
+/* Compute parameters for a Gregorian month. */
 unsigned long long jd_fluks(double day, double mon, double year)
 {
     unsigned long long calday;
