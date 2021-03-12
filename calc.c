@@ -50,7 +50,7 @@ double julianday_c( double day, double month, double year )
    return( JD );
 }
 
-
+// Compute parameters for a Gregorian month.
 unsigned long long jd_fluks(double day, double mon, double year)
 {
     unsigned long long calday;
@@ -79,6 +79,20 @@ unsigned long long jd_fluks(double day, double mon, double year)
     return calday; /* first day = day of month */
 }
 
+/* Compute parameters for a Julian month. */
+unsigned long long jd2_fluks(double day, double mon, double year)
+{
+    unsigned long long calday,firstday;
+/* Compute the Day number. */
+   calday = floor(30.6*((mon)+(((mon)<3)?13:1)))+floor(365.25*((1.*year)+(((mon)<3)?-1:0)));
+   calday = calday+719164-719592-72744;
+/* 719164, 719592 and 72744 correspond to shifts to 1/1/1970 [GC, Unix Time], 1/1/1 [JC], and March 1, 200 [GC/JC]  */
+ 
+   return calday;
+}
+
+
+
 unsigned long long jd_day(unsigned long long calday, unsigned long long day)
 {
     return (calday + day);
@@ -99,7 +113,7 @@ int main(void)
 
     struct tm* ptr; 
     time_t lt; 
-    unsigned long long juld1,juld;
+    unsigned long long juld,juld1,juld2,juld3;
     
     lt = time(NULL); 
     ptr = gmtime(&lt); 
@@ -110,14 +124,19 @@ int main(void)
     printf("Year    : %d\n", ptr->tm_year+1900);
   
     juld1 = jd_fluks(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900);
+    juld2 = jd2_fluks(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900);
     juld = jd_day(juld1,ptr->tm_mday);
+    juld3 = jd_day(juld2,ptr->tm_mday);
     
-    printf("Julian day (JDN) (Vogelaar): %f\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
-    printf("Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld);     
-    printf("First day month: %lld\n", juld1+1); /* +1 is the the first day of the month */
-    printf("Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
-    printf("Days till DD-day (6-6-2025): %lld\n", dd_day(juld));
-        
+    printf("Julian day (JDN) (Vogelaar): %f\n---\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
+    printf("Gregorian calendar: Chronological Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld);     
+    /* printf("Gregorian calendar: First day month: %lld\n", juld1+1); */ /* +1 is the the first day of the month */
+    printf("Julian calendar   : Chronological Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld3);     
+    printf("Delta             : %lld\n---\n", juld3-juld);
+    
+    printf("Chronological Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
+    printf("Days till DD-day (6-6-2025): %lld  Julian calendar: %lld\n---\n", dd_day(juld), dd_day(juld3));
+      
     return 0;
 }
 
@@ -156,6 +175,26 @@ int main(void)
    document.calday = calday
 // Find day of the week for first day (alternate version - may suffer from Year2038-bug).
 // firstdaynumb = now.getDay()
+// Find day of the week for first day.
+   firstdaynumb = Math.round(7*(((calday-1)/7)-Math.floor(((calday-1)/7))))
+   document.firstdaynumb = firstdaynumb
+       }
+       
+       
+        function julmonth()
+       {
+// Find month.
+   array      = ['','January','February','March','April','May','June','July','August','September','October','November','December']                                     
+   month      = array[monthnumb]
+   array  = ['','january','february','march','april','may','june','july','august','september','october','november','december']                                     
+   monthname = array[monthnumb]+"_jc"
+   document.month = month
+   document.monthname = monthname
+// Compute the Day number.
+   calday = Math.floor(30.6*((monthnumb)+(((monthnumb)<3)?13:1)))+Math.floor(365.25*((1.*year)+(((monthnumb)<3)?-1:0)))
+   calday = calday+719164-719592-72744
+// 719164, 719592 and 72744 correspond to shifts to 1/1/1970 [GC, Unix Time], 1/1/1 [JC], and March 1, 200 [GC/JC] 
+   document.calday = calday
 // Find day of the week for first day.
    firstdaynumb = Math.round(7*(((calday-1)/7)-Math.floor(((calday-1)/7))))
    document.firstdaynumb = firstdaynumb
