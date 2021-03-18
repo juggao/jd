@@ -107,7 +107,19 @@ long long dd_day(unsigned long long day)
 {
     return (666666-day);
 }
-       
+
+unsigned long long ro_day(unsigned long long calday)
+{
+    unsigned long long d = janssen_day(calday)-23;
+    return d;
+}
+
+unsigned long long lp_day(unsigned long long calday)
+{
+    unsigned long long d = janssen_day(calday)-21;
+    return d;
+}
+
 int main(void)
 {
 
@@ -135,6 +147,8 @@ int main(void)
     printf("Delta             : %lld\n---\n", juld3-juld);
     
     printf("Chronological Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
+    printf("Chronological D66 member days: %lld\n", ro_day(juld)); 
+    printf("Chronological Proyect day number: %lld\n", lp_day(juld)); 
     printf("Days till DD-day (6-6-2025): %lld  Julian calendar: %lld\n---\n", dd_day(juld), dd_day(juld3));
       
     return 0;
