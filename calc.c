@@ -147,7 +147,7 @@ int main(void)
     printf("Delta             : %lld\n---\n", juld3-juld);
     
     printf("Chronological Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
-    printf("Chronological D66 member day: %lld\n", ro_day(juld)); 
+    printf("Member of D66 from 18/3/2021 till 25/4/2021 \n");
     printf("Chronological Proyect day number: %lld\n", lp_day(juld)); 
     printf("Days till DD-day (6-6-2025): %lld  Julian calendar: %lld\n---\n", dd_day(juld), dd_day(juld3));
       
