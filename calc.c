@@ -120,6 +120,11 @@ unsigned long long lp_day(unsigned long long calday)
     return d;
 }
 
+unsigned long long r4_day(unsigned long long calday)
+{
+    return (calday-665966);
+}
+
 int main(void)
 {
 
@@ -149,6 +154,7 @@ int main(void)
     printf("Chronological Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
     printf("Member of D66 from 18/3/2021 till 25/4/2021 \n");
     printf("Chronological Proyect day number: %lld\n", lp_day(juld)); 
+    printf("Days since the fall of Rutte IV: %lld\n", r4_day(juld));
     printf("Days till DD-day (6-6-2025): %lld  Julian calendar: %lld\n---\n", dd_day(juld), dd_day(juld3));
       
     return 0;
