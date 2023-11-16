@@ -145,10 +145,10 @@ int main(void)
     juld = jd_day(juld1,ptr->tm_mday);
     juld3 = jd_day(juld2,ptr->tm_mday);
     
-    printf("Julian day (JDN) (Vogelaar): %f\n---\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
-    printf("Gregorian calendar: Chronological Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld);     
+    printf("Julian day (JDN): %f\n---\n", julianday_c(ptr->tm_mday,ptr->tm_mon+1,ptr->tm_year+1900)); 
+    printf("Gregorian calendar: Chronological Julian day number since [JC/GC] March 1 200: %lld\n", juld);     
     /* printf("Gregorian calendar: First day month: %lld\n", juld1+1); */ /* +1 is the the first day of the month */
-    printf("Julian calendar   : Chronological Julian day number since [JC/GC] March 1 200 (Fluks): %lld\n", juld3);     
+    printf("Julian calendar   : Chronological Julian day number since [JC/GC] March 1 200: %lld\n", juld3);     
     printf("Delta             : %lld\n---\n", juld3-juld);
     
     printf("Chronological Janssen day number (JD) since February 23 2021: %lld\n", janssen_day(juld));
